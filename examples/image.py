@@ -39,10 +39,12 @@ image_file = sys.argv[1]
 # Create ST7789 LCD display class.
 disp = ST7789.ST7789(
     port=0,
-    cs=ST7789.BG_SPI_CS_FRONT,  # BG_SPI_CS_BACK or BG_SPI_CS_FRONT
-    dc=9,
-    backlight=19,               # 18 for back BG slot, 19 for front BG slot.
-    spi_speed_hz=80 * 1000 * 1000
+    cs=0,                             # for LCD without cs_pin
+    rst=22,                           # gpio22 for reset(res or rst)
+    dc=24,                            # gpio24 for dc
+    backlight=25,                     # gpio25 for led backlight(blk)
+    spi_speed_hz=80 * 1000 * 1000,
+    spi_mode=3                        # for LCD without cs_pin
 )
 
 WIDTH = disp.width

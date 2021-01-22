@@ -99,7 +99,8 @@ class ST7789(object):
     """Representation of an ST7789 TFT LCD."""
 
     def __init__(self, port, cs, dc, backlight=None, rst=None, width=240,
-                 height=240, rotation=90, invert=True, spi_speed_hz=4000000):
+                 height=240, rotation=90, invert=True, spi_speed_hz=4000000,
+                 spi_mode=0):
         """Create an instance of the display using SPI communication.
 
         Must provide the GPIO pin number for the D/C pin and the SPI driver.
@@ -122,7 +123,7 @@ class ST7789(object):
         GPIO.setmode(GPIO.BCM)
 
         self._spi = spidev.SpiDev(port, cs)
-        self._spi.mode = 0
+        self._spi.mode = spi_mode
         self._spi.lsbfirst = False
         self._spi.max_speed_hz = spi_speed_hz
 
